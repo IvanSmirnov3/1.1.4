@@ -10,7 +10,7 @@ public class Main {
 
         userDao.createUsersTable();
 
-        userDao.saveUser("Ivan", "QW", (byte) 19);
+        userDao.saveUser("Ivannnn", "QW", (byte) 19);
         userDao.saveUser("Danil", "AS", (byte) 11);
         userDao.saveUser("Sasha", "PN", (byte) 75);
         userDao.saveUser("Ahmad", "NLILI", (byte) 52);
