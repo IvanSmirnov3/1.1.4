@@ -6,6 +6,7 @@ import jm.task.core.jdbc.util.Util;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import static jm.task.core.jdbc.util.Util.getConnection;
 
@@ -33,7 +34,9 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
     }
 
     // добавление user в таблицу
+    private static final Logger logger = Logger.getLogger(UserDaoJDBCImpl.class.getName());
     public void saveUser(String name, String lastName, byte age) {
+        logger.info("Сохранение пользователя: " + name + " " + lastName + ", возраст: " + age);
         String sql = "INSERT INTO users (name, lastName, age) VALUES (?, ?, ?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, name);

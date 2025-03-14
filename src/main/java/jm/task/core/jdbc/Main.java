@@ -13,7 +13,7 @@ public class Main {
         userDao.saveUser("Ivannnn", "QW", (byte) 19);
         userDao.saveUser("Danil", "AS", (byte) 11);
         userDao.saveUser("Sasha", "PN", (byte) 75);
-        userDao.saveUser("Ahmad", "NLILI", (byte) 52);
+        userDao.saveUser("Vova", "NLILI", (byte) 52);
 
         userDao.removeUserById(1);
         userDao.getAllUsers();
