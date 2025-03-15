@@ -5,8 +5,9 @@ import javax.persistence.*;
 @Table
 public class User {
     @Id
-    private Long id;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
 
     @Column
     private String name;
@@ -17,11 +18,9 @@ public class User {
     @Column
     private Byte age;
 
-    public User(long id, String name, String lastName, byte age) {
 
-    }
 
-    public User(String name, String lastName, Byte age) {
+    public User(long id, String name, String lastName, Byte age) {
         this.name = name;
         this.lastName = lastName;
         this.age = age;

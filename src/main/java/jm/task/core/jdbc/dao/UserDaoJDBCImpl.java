@@ -1,6 +1,7 @@
 package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
+import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.util.Util;
 
 import java.sql.*;
@@ -10,7 +11,7 @@ import java.util.logging.Logger;
 
 import static jm.task.core.jdbc.util.Util.getConnection;
 
-public class UserDaoJDBCImpl extends Util implements UserDao {
+public class UserDaoJDBCImpl extends Util implements UserService {
     Connection connection = getConnection();
 
     // Создание таблицы users: Long id, String name, String lastName, Byte age
@@ -34,15 +35,14 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
     }
 
     // добавление user в таблицу
-    private static final Logger logger = Logger.getLogger(UserDaoJDBCImpl.class.getName());
     public void saveUser(String name, String lastName, byte age) {
-        logger.info("Сохранение пользователя: " + name + " " + lastName + ", возраст: " + age);
         String sql = "INSERT INTO users (name, lastName, age) VALUES (?, ?, ?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, lastName);
             preparedStatement.setByte(3, age);
             preparedStatement.executeUpdate();
+            System.out.println("User с именем " + name + " добавлен в базу данных");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -63,6 +63,7 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
     public List<User> getAllUsers() {
         List<User> userList = new ArrayList<>();
         String sql = "SELECT * FROM users";
+
         try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
                 long id = resultSet.getLong("id");

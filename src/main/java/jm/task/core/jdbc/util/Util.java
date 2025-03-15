@@ -9,6 +9,7 @@ public class Util {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/задача1.1.4";
     private static final String DB_USERNAME = "root";
     private static final String DB_PASSWORD = "13251225ivan";
+
     public static Connection getConnection() {
         Connection connection = null;
         try {
@@ -18,5 +19,15 @@ public class Util {
             e.printStackTrace();
         }
         return connection;
+    }
+
+    public static void closeConnection(Connection connection) {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
